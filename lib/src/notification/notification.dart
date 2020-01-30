@@ -25,11 +25,13 @@ class SlideDismissible extends StatelessWidget {
   final Widget child;
 
   final bool enable;
+  final Function onSwipeDismissed;
 
   const SlideDismissible({
     @required Key key,
     @required this.child,
     @required this.enable,
+    this.onSwipeDismissed,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class SlideDismissible extends StatelessWidget {
       child: child,
       key: key,
       onDismissed: (direction) {
+        onSwipeDismissed(context);
         OverlaySupportEntry.of(context, requireForDebug: this).dismiss(animate: false);
       },
     );
